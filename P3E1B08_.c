@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 int main() {
-	int i,inputpassword,ch,b=0;
+	int i,inputpassword,ch,b=0,num;
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@@@@@@@@@@@@@@@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
 	printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
 	printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
@@ -51,4 +51,12 @@ int main() {
 	}while(inputpassword!=2025);
 	system("pause");
  	system("cls");
+ 	printf("----------[Booking System]----------\n");
+        printf("| a. Available seats              |\n");
+        printf("| b. Arrange for you              |\n");
+        printf("| c. Choose by yourself           |\n");
+        printf("| d. Exit                         |\n");
+        printf("------------------------------------\n");
+        printf("Options on the input form : ");
+        scanf(" %c", &num);
 }
