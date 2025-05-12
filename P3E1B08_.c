@@ -7,7 +7,7 @@ char seats[9][9];
 
 void seatE() {
 	int a,b;
-        for ( a = 0; a < 9; a++) {   
+        for ( a = 0; a < 9; a++) {  //Change all '#' back to '-' 
         	for ( b = 0; b < 9; b++) {
                 if (seats[a][b] == '#'){ 
 				seats[a][b] = '-';
@@ -15,39 +15,38 @@ void seatE() {
 			}
     	}
 }
-
-void SeatA() {  
+void SeatA() {  //display seating map 
 int i,j;
     printf("\\123456789\n");
-    for ( i = 8; i >= 0; i--) {   
+    for ( i = 8; i >= 0; i--) {  //Print out the rows, columns and seats 
         printf("%d", i + 1);
         for ( j = 0; j < 9; j++) {
             printf("%c", seats[i][j]);
         }
-        printf("\n");  
+        printf("\n");  //Go to the next line
     }
 } 
 
-void SeatB() {   
+void SeatB() {  // Initialize the seat map (10 random seats *) 
     int i,j;
-	for ( i = 0; i < 9; i++)  
+	for ( i = 0; i < 9; i++)  //Set all positions to '-' 
         for ( j = 0; j < 9; j++)
             seats[i][j] = '-';
     int mark = 0;
-    while (mark < 10) {  
-        int r = rand() % 9;  
-        int c = rand() % 9;  
-        if (seats[r][c] == '-') {   
+    while (mark < 10) {  //Mark empty seats as selected until ten seats are marked 
+        int r = rand() % 9;  //Randomly select a row
+        int c = rand() % 9;  //Randomly select a location
+        if (seats[r][c] == '-') {   //If it is '-', mark it with '@'
             seats[r][c] = '*';
             mark++;
         }
     }
 }
 
-void SeatC() {  
+void SeatC() {  // Automatically arrange seats (1~4 people)
     int num;
     printf("How many seats do you need (1~4)? ");
-    while(1){  
+    while(1){  //Requires input of seats to be reserved (1~4 people) 
     	fflush(stdin);
     	scanf("%d", &num);
     	if (num >= 1 && num <= 4){
@@ -57,31 +56,31 @@ void SeatC() {
 }
 
 int i,j,k,a,b;
-for (i = 0; i < 9; i++) {  
+for (i = 0; i < 9; i++) {  // Find horizontally consecutive seats;
     for ( j = 0; j <= 9 - num; j++) {
         int ok = 1;
-        for ( k = 0; k < num; k++) {  
+        for ( k = 0; k < num; k++) {  // Check num seats starting from j
             if (seats[i][j + k] != '-') {
                 ok = 0;
                 break;
             }
         }
 
-        if (ok==1) {  
-            for ( k = 0; k < num; k++) seats[i][j + k] = '@'; 
+        if (ok==1) {  // If all the seats in this section are empty
+            for ( k = 0; k < num; k++) seats[i][j + k] = '@';  //Temporarily mark these seats as '@'
             SeatA();
             char ans;
             printf("Are you satisfied? (y/n): ");
             while(1){
             	scanf(" %c", &ans);
-            	if (ans == 'y' || ans == 'Y') {  
+            	if (ans == 'y' || ans == 'Y') {  //When inputting y, convert '@' to '*' 
                 for ( k = 0; k < num; k++){
 				seats[i][j + k] = '*';
           		}
             	seatE();
                 return;
                 } 
-				if (ans == 'n' || ans == 'N') {  
+				if (ans == 'n' || ans == 'N') {  //When inputting n, convert '@' to '#'
                     for ( k = 0; k < num; k++) seats[i][j + k] = '#';
                     printf("Automatically assign seats to # instead! If you do not select option b in the next step, the seats will be re-assigned!\n ");
                     printf("自動劃位將以#作為替代! 若下一步驟不是選擇b選項，將會重新規劃空位!\n ");
@@ -89,7 +88,7 @@ for (i = 0; i < 9; i++) {
                     printf("Automatically assign seats to # instead! If you do not select option b in the next step, the seats will be re-assigned!\n ");
                     return;
                 }
-                while(1){  
+                while(1){  //If the input is not y and x
 					printf("The answer is incorrect, please enter (y/n):  ");
                 	break;
             }
@@ -134,7 +133,7 @@ void SeatD() {  //Seat of your choice
 	}
 }
 
-int main() {  
+int main() {  // Main program
 	int i,inputpassword,ch,b=0;
     srand(time(NULL));
     printf("⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ @@@@@@@@@@@@@@@@@@@@@@@@⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙ ⊙\n");
@@ -198,13 +197,35 @@ int main() {
         printf("Please enter the options on the directory  : ");
         scanf(" %c", &num);
         if(num=='a'||num=='A'){  //If the input is a or A
-            seatE();SeatA();getch();continue;
+            seatE();SeatA();getch();continue;  //Execute function seatA
         }
         else if(num=='b'||num=='B'){  //If the input is b or B
-            SeatC();getch();continue;
+            SeatC();getch();continue;  //Execute function seatC
         }
         else if(num=='c'||num=='C'){  //If the input is c or C
-            seatE();SeatD();getch();continue;
+            seatE();SeatD();getch();continue;  //Execute function seatE and function seatD
         }
-	}
+        else if(num=='d'||num=='D'){  //If the input is d or D
+            printf("Continue? (y/n): ");
+            char num2;
+            while(1){
+            	scanf(" %c", &num2);
+            	if (num2 == 'y'||num2 == 'Y') {  //If the input is y or Y
+                	printf("To return to the main menu, press any key\n");
+                	break;
+            	}
+            	if (num2 == 'n'||num2 == 'N') {  //If the input is n or N
+                	printf("End of program\n");
+                	return 0;
+            	}
+                else printf("Please re-enter (y/n): "); continue;
+            }
+		}
+        else continue;
+    }
+
+    return 0;
 }
+//本次的作業三鄉比起之前來說要更加複雜許多，不僅是函數的要求，還有隨機產生的座位，都使我費盡心思。
+//且這次還更加考驗英語能力(雖然我有些是用翻譯)但是還是能夠有效提升我對於城市英文的認知
+//本次我還用了大量的迴圈去做，有時複雜到我得一一自細閱讀才能夠理解我之前的想法。 
