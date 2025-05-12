@@ -33,4 +33,22 @@ int main() {
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@@@@@@@@@@@@@@@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
+    printf("Please enter the password: \n");
+	printf("hint: 2025\n");
+	do{
+		scanf("%d",&inputpassword);
+		fflush(stdin);
+		if(inputpassword==2025){
+			printf("welcome!");
+			break;
+		}
+		if(b>=2){
+			printf("Entered incorrectly three times ");
+			return 0;
+		}
+		else b++; 
+		printf("Please enter the password: \n");
+	}while(inputpassword!=2025);
+	system("pause");
+ 	system("cls");
 }
