@@ -1,7 +1,41 @@
-#include<stdio.h>
-#include<stdlib.h>
-int main() {
-	int i,inputpassword,ch,b=0,num;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#include <time.h>
+char seats[9][9];
+
+void SeatA() {  //display seating map 
+int i,j;
+    printf("\\123456789\n");
+    for ( i = 8; i >= 0; i--) {  //Print out the rows, columns and seats 
+        printf("%d", i + 1);
+        for ( j = 0; j < 9; j++) {
+            printf("%c", seats[i][j]);
+        }
+        printf("\n");  //Go to the next line
+    }
+} 
+
+void SeatB() {  // Initialize the seat map (10 random seats *) 
+    int i,j;
+	for ( i = 0; i < 9; i++)  //Set all positions to '-' 
+        for ( j = 0; j < 9; j++)
+            seats[i][j] = '-';
+    int mark = 0;
+    while (mark < 10) {  //Mark empty seats as selected until ten seats are marked 
+        int r = rand() % 9;
+        int c = rand() % 9;
+        if (seats[r][c] == '-') {   
+            seats[r][c] = '*';
+            mark++;
+        }
+    }
+}
+
+int main() {  // Main program
+	int i,inputpassword,ch,b=0;
+    srand(time(NULL));
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@@@@@@@@@@@@@@@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
 	printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
 	printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
@@ -33,8 +67,8 @@ int main() {
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó @@@@@@@@@@@@@@@@@@@@@@@@¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
     printf("¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó ¡ó\n");
-    printf("Please enter the password: \n");
-	printf("hint: 2025\n");
+	printf("Please enter a four-digit password\n");
+	printf("hint:2025\n");
 	do{
 		scanf("%d",&inputpassword);
 		fflush(stdin);
@@ -43,20 +77,24 @@ int main() {
 			break;
 		}
 		if(b>=2){
-			printf("Entered incorrectly three times ");
 			return 0;
 		}
 		else b++; 
-		printf("Please enter the password: \n");
+		printf("Please enter a four-digit password\n");
 	}while(inputpassword!=2025);
 	system("pause");
  	system("cls");
- 	printf("----------[Booking System]----------\n");
+    SeatB();
+    char num;
+    while (1) {
+        system("cls");
+        printf("----------[Booking System]----------\n");
         printf("| a. Available seats              |\n");
         printf("| b. Arrange for you              |\n");
         printf("| c. Choose by yourself           |\n");
         printf("| d. Exit                         |\n");
         printf("------------------------------------\n");
-        printf("Options on the input form : ");
+        printf("Please enter the options on the directory  : ");
         scanf(" %c", &num);
+	}
 }
