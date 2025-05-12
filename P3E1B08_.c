@@ -101,6 +101,39 @@ for (i = 0; i < 9; i++) {
     printf("No desired location\n");
 }
 
+void SeatD() {  //Seat of your choice
+    int n,i,j;
+    printf("How many seats do you need (1~4)? ");
+    while(1){  //Requires input of seats to be reserved (1~4 people) 
+    	fflush(stdin);
+    	scanf("%d", &n);
+    	if (n >= 1 && n <= 4){
+			break;
+		}
+		else printf("Please enter the number of seats for 1 to 4 people: ");continue;
+}
+    	for ( i = 0; i < n; i++) {
+        	int row, col;
+        	printf("Please enter your seat selections one by one, row first then col (remember to press enter after entering)\n ");
+        	while (1) {  //When the selected position is '-', change it to '@' 
+            	scanf("%d %d", &row,&col);
+            	row--; col--;
+            	if (row >= 0 && row < 9 && col >= 0 && col < 9 && seats[row][col] == '-') {
+                	seats[row][col] = '@';
+                	break;
+            	} 
+				else printf("The arrangement is wrong or the position is repeated. Please enter it again\n");
+        	}
+    	}
+
+    SeatA(); //convert '@' to '*' 
+    for ( i = 0; i < 9; i++){
+        for ( j = 0; j < 9; j++){
+            if (seats[i][j] == '@') seats[i][j] = '*';
+		}
+	}
+}
+
 int main() {  
 	int i,inputpassword,ch,b=0;
     srand(time(NULL));
@@ -164,5 +197,14 @@ int main() {
         printf("------------------------------------\n");
         printf("Please enter the options on the directory  : ");
         scanf(" %c", &num);
+        if(num=='a'||num=='A'){  //If the input is a or A
+            seatE();SeatA();getch();continue;
+        }
+        else if(num=='b'||num=='B'){  //If the input is b or B
+            SeatC();getch();continue;
+        }
+        else if(num=='c'||num=='C'){  //If the input is c or C
+            seatE();SeatD();getch();continue;
+        }
 	}
 }
