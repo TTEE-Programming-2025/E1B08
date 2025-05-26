@@ -1,5 +1,61 @@
 #include<stdio.h>
 #include<stdlib.h>
+#define MAX 10
+
+int n;
+ struct student {
+    char name[10];
+    int id;
+    int math;
+    int phy;
+    int eng;
+    float avg;
+} Student[MAX];
+
+void enter(){//a
+	int i=0;
+	system("CLS");
+	printf("請輸入學生個數(5~10): ");
+    while(1){
+    	scanf("%d",&n);
+    	if (n >= 5 && n<= 10) {
+    		break; 
+		}
+		else printf("輸入錯誤人數，請輸入(5~10): ");
+	}
+	for(i=0;i<n;i++){
+		printf("請輸入學生姓名: ");
+		scanf("%s",Student[i].name);
+		printf("輸入學號（6 位整數）: ");
+		while(1){
+			scanf("%d",&Student[i].id);
+			if(Student[i].id<100000||Student[i].id>999999){//if(strlen(student[i].id) != 6)
+				printf("輸入錯誤，請輸入學號（6 位整數）: ");
+			}else break;
+		}
+		printf("輸入數學的成績（0~100 分）: ");
+		while(1){
+			scanf("%d",&Student[i].math);
+			if(Student[i].math<0||Student[i].math>100){
+				printf("輸入錯誤，請輸入(0~100): ");
+			}else break;
+		}
+		printf("輸入物理的成績（0~100 分）: ");
+		while(1){
+			scanf("%d",&Student[i].phy);
+			if(Student[i].phy<0||Student[i].phy>100){
+				printf("輸入錯誤，請輸入(0~100): ");
+			}else break;
+		}
+		printf("輸入英文的成績（0~100 分）: ");
+		while(1){
+			scanf("%d",&Student[i].eng);
+			if(Student[i].eng<0||Student[i].eng>100){
+				printf("輸入錯誤，請輸入(0~100): ");
+			}else break;
+		}
+	}	
+}
 
 int main(void){
 	int i,password=2025,inputpassword,ch,b=0,j,k,l;/*設立變數*/ 
@@ -22,4 +78,21 @@ int main(void){
 }
 	system("PAUSE");/*螢幕畫面暫停，並等待使用者案任意鍵*/ 
 	system("CLS");/*清除螢幕*/
+	
+	while(1){
+		system("cls");
+		printf("------------[Grade System]--------\n")	;
+		printf("| a. Enter student grades      |\n"); 
+		printf("| b. Display student grades    |\n");
+		printf("| c. Search for student grades |\n"); 
+		printf("| d. Grade ranking             |\n");
+		printf("| e. Exit system               |\n");
+		printf("----------------------------------\n");
+		printf("請輸入選項: ");
+		scanf("%c",&num);
+		if(num=='A'||num=='a'){
+			enter();
+			continue;
+		}
+	}
 }
