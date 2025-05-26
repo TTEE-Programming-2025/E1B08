@@ -57,6 +57,39 @@ void enter(){//a
 	}	
 }
 
+void display(){//b
+	int i;
+	system("CLS");
+	printf("姓名\t學號\t數學\t物理\t英文\t平均\n");
+	for(i=0;i<n;i++){
+		Student[i].avg=((Student[i].math+Student[i].phy+Student[i].eng)/3);
+		printf("%s\t%d\t%d\t%d\t%d\t%.1f\n",Student[i].name,Student[i].id,Student[i].math,Student[i].phy,Student[i].eng,Student[i].avg);
+	}
+	system("pause");
+	system("cls");
+}
+
+void search(){//c
+	int i;
+	system("CLS");
+	char string[99];
+	int found = 0;
+	printf("請輸入要搜尋的姓名: ");
+	scanf("%s",string);
+	for(i=0;i<n;i++){
+		if(strcmp(Student[i].name,string)==0){
+			printf("姓名\t學號\t數學\t物理\t英文\t平均\n");
+			printf("%s\t%d\t%d\t%d\t%d\t%.1f\n",Student[i].name,Student[i].id,Student[i].math,Student[i].phy,Student[i].eng,Student[i].avg);
+			found=1;
+		}
+	}
+	if(found!=1){
+		printf("資料不存在! ");
+	}
+	system("pause");
+	system("cls");
+}
+
 int main(void){
 	int i,password=2025,inputpassword,ch,b=0,j,k,l;/*設立變數*/ 
 	char c ,ch1,h,num,num1;
@@ -93,6 +126,14 @@ int main(void){
 		if(num=='A'||num=='a'){
 			enter();
 			continue;
+		}
+		if(num=='B'||num=='b'){
+				display();
+				continue;
+		}
+		if(num=='C'||num=='c'){
+				search();
+				continue;
 		}
 	}
 }
