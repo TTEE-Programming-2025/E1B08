@@ -90,6 +90,27 @@ void search(){//c
 	system("cls");
 }
 
+void scorelv(){//d
+	system("CLS");
+	int i,j;
+    for ( i = 0; i < n - 1; i++) {
+        for ( j = i + 1; j < n; j++) {
+            if ((Student + j)->avg > (Student + i)->avg) {
+                struct student temp = *(Student + i);
+                *(Student + i) = *(Student + j);
+                *(Student + j) = temp;
+            }
+        }
+    }
+    printf("平均成績排名（高 -> 低）：\n");
+    printf("姓名\t學號\t平均\n");
+    for ( i = 0; i < n; i++) {
+        printf("%s\t%d\t%.1f\n", Student[i].name, Student[i].id, Student[i].avg);
+    }
+	system("pause");
+	system("cls");
+}
+
 int main(void){
 	int i,password=2025,inputpassword,ch,b=0,j,k,l;/*設立變數*/ 
 	char c ,ch1,h,num,num1;
@@ -128,12 +149,32 @@ int main(void){
 			continue;
 		}
 		if(num=='B'||num=='b'){
-				display();
-				continue;
+			display();
+			continue;
 		}
 		if(num=='C'||num=='c'){
-				search();
-				continue;
+			search();
+			continue;
 		}
+		if(num=='D'||num=='d'){
+			scorelv();
+			continue;
+		}
+		if(num=='E'||num=='e'){
+			printf("確定離開？ (y/n): ");
+			while(1){
+            	scanf(" %c", &num1);
+            	if (num1 == 'n'||num1 == 'N') {
+                	printf("回主選單，請按任意鍵\n");
+                	break;
+            	}
+            	if (num1 == 'y'||num1 == 'Y') {
+                	printf("程式結束\n");
+                	return 0;
+            	}
+                else printf("請重新輸入 (y/n): "); continue;
+            }
+		}
+
 	}
 }
